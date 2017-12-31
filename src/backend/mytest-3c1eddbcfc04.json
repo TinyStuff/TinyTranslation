@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "turnkey-lacing-622",
+  "private_key_id": "3c1eddbcfc04f08dc3a5546837765cd64c999111",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDBtTbmxI9rUQrn\nLksYSViB9V54958wI1VOulq65FeveveDKeDOxvL3fdXAIptKdNAIFeGY1O0F/u/U\n5mwojJlvBbspVS51Ps6CZf0au6aSwR4mORdEW2DI/CIVoE0G/TkAnWlyL7OGyLzS\nvKT1oSUb4CFvxjDRWWLm7fAPRWCKbu+yC+cJBkYHXbxu5+5Ins6nKIYfr4v7ehED\nYFZpkuFvqdLcqcLfLWj7jkKlJf5X5F1De3tNdFCeGkYYnxBAfR9u8siapsizi6yk\nzOsmacpBPX2id5cDFa4qLJrQ4r89h6KlzMdqPr0ZqYCKVpf7X2BHPhKuJ88my4U9\ncYZoBV6/AgMBAAECggEAVfCkDvYd+yrVf4OWZYwE7IOECn8x7RV//5HGNyyfiocv\n0M1/o724hf0aHEg+RWZV9YBfuoKdNg/JL9ebHNJkMFGGm+vi1LmsvUWqaXXfjTSI\nv8SMghNYeVMDfDzGb9dgttkfsz1elOnyfDydoyx/XkKuEv0HI5pYusPNwbiyADg6\nCkEnynOD8xpulUtz5O67rKZepMO8f0ukNyEM5kVKRnQ9CHe7ZC3vdLgI2PYPLVPN\nfYreVfafdZG601usvrDYEuVLueWm+J6KoXbi5HkfpudotMlWXuztuevXkC0Ho0Ta\nprJDxW+hDiaU5LjiIw9AqeEhhCSnFL+72n24Z8FegQKBgQDlNaRAgA/ImvJbuG2l\nLZ+PWlU5Kz4F7K93XOyyMmPPvPojG1a3g2jsFXWqR8aRKPly7dXkqyzeJ8vJYCvt\nSAHrddA9GU9TAFmH+EN2UCs0W1wTelEo0AsmrC/Wp8xPFeLkhsHnd9rbDWnO6YDS\nVh6pJK4/uvSnu8u2Ld+kIl5krwKBgQDYWUyw0ngSO1/8zTXqt7q+KTOy2SnqDONu\n6AQ/HEsQC4TvtHaLn5X30lfeQ4hHOT7ZsyXIfs5a3UYRDKJT8CfjU34NtqZOKlNB\nPFqmAcYafmIIz/s5r9wtNAQCEtweYDwOxkjxRtksIYYRZGuiiJu4o7DLHtDeAt6y\n1OH6vFJK8QKBgExDsuk7MwU+eRGHpgPl0Ed0eRLSjoqOHDwNETyhg5Blgp0XxZy9\n/rU+1q3Xv/wgtA9Hj3nMcttgRnA0raj/4pOj2avatggZ/7A8LMY7GoULOPHKKyL3\nRh6SAEDeCB7wW1RKek44FPv51JDiJNjXitAgwlG2NR1yYO+3B8inHt1FAoGBAKt/\nxmJYxOO2+3UbewUQFdFOOfQpX6dwBg3RkCQzGnGioAOgK2Ss4aWssQi4wdurzl2m\nPGo90viGdVdoi3k8Y3I5qi/WvOgzdwG8hSMZPt+blbzkmYJ2HHQcypyWNLVDlfgk\nSIgyoE7yWCOLViNmZQKth6TMTcffwIdEZ8pp5FYRAoGBAOC9DltkO4zxgKXcF3P5\nqkP1BdfQbFvwVj0F5LHKWtmVTHrNZciQYfQpQW7VemNGp7AH6eVb1cvPqBoehH+Y\nNVFgFxP8uB+7oj8Dskw2BkJm4whDAo86E3EznPv1smjgCk7T+Nw9i1RLCb2R1omT\nebFazmlQqdh/NxpYBVEF83L6\n-----END PRIVATE KEY-----\n",
+  "client_email": "translate@turnkey-lacing-622.iam.gserviceaccount.com",
+  "client_id": "102718224921562500460",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/translate%40turnkey-lacing-622.iam.gserviceaccount.com"
+}

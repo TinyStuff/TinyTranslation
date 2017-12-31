@@ -1,0 +1,11 @@
+.key {
+    width:150px;
+}
+
+.value {
+    width: 200px;
+}
+
+body {
+    background:#eee;
+}

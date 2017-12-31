@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+<div class="middle">
+<div id='app'>
+    
+    <router-view></router-view>
+</div>
+</div>
+<style>
+    body {
+        margin:20px;
+    }
+</style>
+
+@section scripts {
+    <script src="~/dist/main.js" asp-append-version="true"></script>
+}

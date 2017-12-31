@@ -1,0 +1,81 @@
+﻿<Properties StartupConfiguration="{ECCA4C87-9C97-464C-A804-D3B41ED80EBA}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AdminController.cs">
+    <Files>
+      <File FileName="Interfaces/ITranslator.cs" Line="7" Column="22" />
+      <File FileName="Services/TranslationService.cs" Line="135" Column="19" />
+      <File FileName="Translators/DumbTranslator.cs" Line="11" Column="25" />
+      <File FileName="Translators/GoogleTranslator.cs" Line="8" Column="48" />
+      <File FileName="Services/Helper.cs" Line="30" Column="20" />
+      <File FileName="Services/TranslationDictionary.cs" Line="86" Column="22" />
+      <File FileName="Storage/FileStorage.cs" Line="39" Column="66" />
+      <File FileName="Interfaces/ITranslationStorage.cs" Line="8" Column="14" />
+      <File FileName="Controllers/TranslationController.cs" Line="34" Column="10" />
+      <File FileName="Exceptions/NotAllowedLocaleException.cs" Line="2" Column="9" />
+      <File FileName="translations/sv.csv" Line="1" Column="1" />
+      <File FileName="translations/en.csv" Line="1" Column="1" />
+      <File FileName="translations/no.csv" Line="1" Column="1" />
+      <File FileName="Startup.cs" Line="41" Column="19" />
+      <File FileName="Program.cs" Line="21" Column="1" />
+      <File FileName="wwwroot/index.html" Line="15" Column="20" />
+      <File FileName="Controllers/HomeController.cs" Line="18" Column="10" />
+      <File FileName="appsettings.json" Line="1" Column="1" />
+      <File FileName="appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="webpack.config.js" Line="29" Column="78" />
+      <File FileName="webpack.config.vendor.js" Line="21" Column="71" />
+      <File FileName="tsconfig.json" Line="1" Column="1" />
+      <File FileName="npm-shrinkwrap.json" Line="1" Column="1" />
+      <File FileName="Views/_ViewStart.cshtml" Line="1" Column="1" />
+      <File FileName="Views/_ViewImports.cshtml" Line="1" Column="15" />
+      <File FileName="Views/Shared/_Layout.cshtml" Line="1" Column="1" />
+      <File FileName="Views/Home/Index.cshtml" Line="13" Column="21" />
+      <File FileName="ClientApp/app.js" Line="21" Column="16" />
+      <File FileName="ClientApp/components/home-page.vue" Line="12" Column="1" />
+      <File FileName="ClientApp/components/translations.vue" Line="118" Column="20" />
+      <File FileName="ClientApp/components/transinput.vue" Line="70" Column="26" />
+      <File FileName="Models/TranslationTable.cs" Line="29" Column="37" />
+      <File FileName="ClientApp/css/site.css" Line="10" Column="21" />
+      <File FileName="Translators/BingTranslator.cs" Line="7" Column="32" />
+      <File FileName="mytest-3c1eddbcfc04.json" Line="13" Column="1" />
+      <File FileName="wwwroot/dist/main.js" Line="1" Column="1" />
+      <File FileName="wwwroot/dist/main.js.map" Line="1" Column="1" />
+      <File FileName="wwwroot/dist/vendor-manifest.json" Line="1" Column="1" />
+      <File FileName="package.json" Line="1" Column="1" />
+      <File FileName="Controllers/AdminController.cs" Line="12" Column="18" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="backend" expanded="True">
+            <Node name="backend" expanded="True">
+              <Node name="ClientApp" expanded="True">
+                <Node name="components" expanded="True" />
+                <Node name="css" expanded="True" />
+              </Node>
+              <Node name="Controllers" expanded="True">
+                <Node name="AdminController.cs" selected="True" />
+              </Node>
+              <Node name="Services" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+                <Node name="Shared" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="dist" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/mats/Projects/TinyTranslation/src/backend/Translators/GoogleTranslator.cs" relfile="Translators/GoogleTranslator.cs" line="26" column="39" />
+      <Breakpoint file="/Users/mats/Projects/TinyTranslation/src/backend/Translators/GoogleTranslator.cs" relfile="Translators/GoogleTranslator.cs" line="30" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.backend PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
