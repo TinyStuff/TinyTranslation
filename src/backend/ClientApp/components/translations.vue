@@ -1,7 +1,7 @@
 ﻿<template>
     <div>
         <h2>Translations</h2>
-        <p>Translate your all keys here and it will be stored directly, it autotranslation is enabled you will get suggestions translated from main language</p>
+        <p>Translate your all keys here and it will be stored directly.<br />If autotranslation is enabled you will get suggestions translated from main language</p>
         <span class="right"><strong>{{nokeys}}</strong> keys</span>
         <p v-if="!translations"><em><i class="fas fa-spinner fa-spin" />&nbsp;Loading</em></p>
         <ul class="langs">
