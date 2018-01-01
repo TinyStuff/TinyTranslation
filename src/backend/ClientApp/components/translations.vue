@@ -2,7 +2,7 @@
     <div>
         <h2>Translations</h2>
         <p>Translate your all keys here and it will be stored directly, it autotranslation is enabled you will get suggestions translated from main language</p>
-        <span>{{nokeys}} keys</span>
+        <span class="right"><strong>{{nokeys}}</strong> keys</span>
         <p v-if="!translations"><em><i class="fas fa-spinner fa-spin" />&nbsp;Loading</em></p>
         <ul class="langs">
             <li v-for="l in languages">
@@ -19,9 +19,9 @@
             <tbody>
                 <tr v-for="(value,key) in translations.values">
                     <td class="key">
-                        <div class="keyvalue">{{ key }}</div>
+                        <div class="keyvalue">"{{ key }}"</div>
                         <div class="tools">
-                            <span @click="dodelete(key)"><i class="fa fa-times" />Delete</span>
+                            <span @click="dodelete(key)"><i class="fa fa-times" /></span>
                         </div>
                     </td>
                     <td class="valuetd">
@@ -100,9 +100,13 @@ export default {
 </script>
 <style>
     .valuetd {
-        background:#eee;
+        background-color:#fcfcfc;
+        border-bottom: 1px #aaa;
     }
-
+    .right {
+        float:right;
+        font-size:20px;
+    }
     .langs {
         list-style:none;
         margin:0;
@@ -117,7 +121,11 @@ export default {
     }
     .tools > span {
         margin-left: 10px;
-        padding: 4px 8px;
+        text-align: center;
+        height:20px;
+        width:20px;
+        display:inline-block;
+        line-height:20px;
         font-size: 12px;
         color: #fff;
         border-radius: 20px;
@@ -127,15 +135,11 @@ export default {
     .langs li {
         display:inline-block;
         margin-right: 10px;
-        padding: 4px 8px;
+        padding: 2px 8px;
+        text-transform: uppercase;
         color: #fff;
         border-radius: 20px;
-        background-color: green;
-    }
-
-    table.table {
-        width: auto;
-        min-width: 40%;
+        background-color: #53B7CE;
     }
 
     .value input {

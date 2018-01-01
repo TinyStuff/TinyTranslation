@@ -2,15 +2,41 @@
     ViewData["Title"] = "Home Page";
 }
 <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
-<div class="middle">
-<div id='app'>
-    
-    <router-view></router-view>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<div class="top">
+    <div class="middle">
+        <span class="logo"><span class="fa fa-user-circle" /></span> <a href="/">Home</a><a href="/translate">Translate</a>
+    </div>
 </div>
+<div class="middle">
+    <div id='app'>
+        <ul class="menu"></ul>
+        <router-view></router-view>
+    </div>
 </div>
 <style>
     body {
         margin:20px;
+        font-family: 'Roboto', sans-serif;
+    }
+    .middle {
+        width:960px;
+        margin:0 auto;
+    }
+    .top {
+        border-bottom:solid 1px #ddd;
+        background-color:#fdfdfd;
+    }
+    a:active {
+        color:53B7CE;
+    }
+    .top a {
+        display:inline-block;
+        text-transform: uppercase;
+        margin: 20px 5px;
+    }
+    span.logo {
+        font-size:20px;
     }
 </style>
 

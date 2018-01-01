@@ -2,11 +2,11 @@
     <div class="ff">
         <span class="langname">{{langName}}</span>
         <span class="oldvalue" v-if="!editing" v-on:click="editing=!editing">{{oldValue}}</span>
-        <div v-if="editing">
+        <div v-if="editing" class="editbox">
             <span v-if="saving" class="saving">Saving</span>
             <textarea v-if="!saving" v-model="newValue" @blur="save" @focus="getsugg" /> <span v-if="oldValue!=newValue">({{oldValue}})</span>
-            <span @click="getsugg">{{suggest}}</span>
-            <span v-on:click="editing=false"><i class="fa fa-times" /></span>
+            <div @click="getsugg">{{suggest}}</div>
+            <span v-on:click="editing=false" class="closebtn"><i class="fa fa-times" /></span>
         </div>
     </div>
 </template>
@@ -21,7 +21,7 @@ export default {
             lang: this.locale,
             key: this.transkey,
             hasTranslated: false,
-            suggest: 'Loading...',
+            suggest: 'Click for autotranslation...',
             oldValue: this.value,
             newValue: this.value
         }
@@ -71,8 +71,18 @@ export default {
 <style>
     .ff input {
         border:0;
-        border-bottom: dotted 1px green;
+        border-bottom: dotted 1px #53B7CE;
         background:transparent;
+    }
+
+    .editbox {
+        position:relative;
+    }
+
+    .closebtn {
+        position:absolute;
+        right:-3px;
+        top:-3px;
     }
 
     .langname {
@@ -80,7 +90,7 @@ export default {
     }
 
     .oldvalue {
-        border-bottom: dotted 1px blue;
+        border-bottom: dotted 1px #53B7CE;
         padding: 2px 6px;
         display: inline-block;
     }
