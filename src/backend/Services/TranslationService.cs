@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using backend.Interfaces;
 using backend.Models;
 using backend.Translators;
+using TinyTranslations;
 
 namespace backend.Services
 {
@@ -85,6 +86,8 @@ namespace backend.Services
             storage.Store(dict);
         };
 
+        public string DefaultLocale { get; internal set; }
+
         private TranslationDictionary AddLocale(string locale, bool copyFromDefault)
         {
             var ret = new TranslationDictionary(locale);
@@ -97,7 +100,8 @@ namespace backend.Services
             {
                 MatchFromDefault(ret);
             }
-
+            else 
+                DefaultLocale = locale;
             ret.IsPrimaryLanguage = !copyFromDefault;
             return ret;
         }

@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using TinyWebSockets;
 
-namespace backend.SocketMessages
+namespace TranslationMessages.SocketMessages
 {
     [Message("added")]
     public class TranslationAdded : BaseMessage

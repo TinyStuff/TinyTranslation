@@ -1,20 +1,19 @@
 ﻿<Properties StartupConfiguration="{ECCA4C87-9C97-464C-A804-D3B41ED80EBA}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Home/Index.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
     <Files>
       <File FileName="Interfaces/ITranslator.cs" Line="7" Column="22" />
-      <File FileName="Services/TranslationService.cs" Line="21" Column="45" />
+      <File FileName="Services/TranslationService.cs" Line="105" Column="13" />
       <File FileName="Translators/DumbTranslator.cs" Line="11" Column="25" />
       <File FileName="Translators/GoogleTranslator.cs" Line="8" Column="48" />
       <File FileName="Services/Helper.cs" Line="21" Column="10" />
-      <File FileName="Services/TranslationDictionary.cs" Line="86" Column="22" />
-      <File FileName="Storage/FileStorage.cs" Line="39" Column="66" />
-      <File FileName="Interfaces/ITranslationStorage.cs" Line="8" Column="14" />
+      <File FileName="Storage/FileStorage.cs" Line="6" Column="1" />
+      <File FileName="Interfaces/ITranslationStorage.cs" Line="2" Column="18" />
       <File FileName="Controllers/TranslationController.cs" Line="34" Column="10" />
       <File FileName="Exceptions/NotAllowedLocaleException.cs" Line="2" Column="9" />
       <File FileName="translations/sv.csv" Line="1" Column="1" />
       <File FileName="translations/en.csv" Line="1" Column="1" />
       <File FileName="translations/no.csv" Line="1" Column="1" />
-      <File FileName="Startup.cs" Line="41" Column="19" />
+      <File FileName="Startup.cs" Line="31" Column="31" />
       <File FileName="Program.cs" Line="21" Column="1" />
       <File FileName="wwwroot/index.html" Line="15" Column="20" />
       <File FileName="Controllers/HomeController.cs" Line="18" Column="10" />
@@ -32,7 +31,7 @@
       <File FileName="ClientApp/components/home-page.vue" Line="12" Column="1" />
       <File FileName="ClientApp/components/translations.vue" Line="4" Column="78" />
       <File FileName="ClientApp/components/transinput.vue" Line="24" Column="50" />
-      <File FileName="Models/TranslationTable.cs" Line="29" Column="37" />
+      <File FileName="Models/TranslationTable.cs" Line="5" Column="1" />
       <File FileName="ClientApp/css/site.css" Line="10" Column="21" />
       <File FileName="Translators/BingTranslator.cs" Line="6" Column="2" />
       <File FileName="mytest-3c1eddbcfc04.json" Line="1" Column="1" />
@@ -41,13 +40,37 @@
       <File FileName="wwwroot/dist/vendor-manifest.json" Line="1" Column="1" />
       <File FileName="package.json" Line="1" Column="1" />
       <File FileName="Controllers/AdminController.cs" Line="18" Column="1" />
+      <File FileName="obj/Debug/netcoreapp2.0/backend.AssemblyInfo.cs" Line="14" Column="1" />
+      <File FileName="../../../gymlocator/src/TinyTranslatons/TranslationDictionary.cs" Line="136" Column="45" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="backend" expanded="True">
+            <Node name="backend" expanded="True">
+              <Node name="Interfaces" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="Storage" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+              </Node>
+              <Node name="Startup.cs" selected="True" />
+            </Node>
+            <Node name="TinyTranslations" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/mats/Projects/TinyTranslation/src/backend/Translators/GoogleTranslator.cs" relfile="Translators/GoogleTranslator.cs" line="26" column="39" />
       <Breakpoint file="/Users/mats/Projects/TinyTranslation/src/backend/Translators/GoogleTranslator.cs" relfile="Translators/GoogleTranslator.cs" line="30" column="1" />
+      <Breakpoint file="/Users/mats/Projects/TinyTranslation/src/backend/Services/TranSocketService.cs" relfile="Services/TranSocketService.cs" line="34" column="1" />
+      <Breakpoint file="/Users/mats/Projects/TinyTranslation/src/backend/Services/TranSocketService.cs" relfile="Services/TranSocketService.cs" line="53" column="1" />
+      <Breakpoint file="/Users/mats/Projects/TinyTranslation/src/backend/Services/TranSocketService.cs" relfile="Services/TranSocketService.cs" line="21" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

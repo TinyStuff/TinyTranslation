@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Storage\" />
+    <Folder Include="translations\" />
+    <Folder Include="Translators\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Cloud.Translation.V2" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="TranslatorService" Version="1.1.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\gymlocator\src\TinyTranslatons\TinyTranslations.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Services\TranslationDictionary.cs" />
+    <Compile Remove="TranslationMessages\SocketMessages\LanguageChange.cs" />
+    <Compile Remove="TranslationMessages\SocketMessages\LanguageChanged.cs" />
+    <Compile Remove="TranslationMessages\SocketMessages\TranslationAdded.cs" />
+    <Compile Remove="TranslationMessages\SocketMessages\TranslationUpdated.cs" />
+    <Compile Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="TranslationMessages\bin\Debug\netstandard2.0\TinyWebSockets.dll" />
+    <None Remove="TranslationMessages\bin\Debug\netstandard2.0\TinyWebSockets.pdb" />
+    <None Remove="TranslationMessages\bin\Debug\netstandard2.0\TranslationMessages.dll" />
+    <None Remove="TranslationMessages\bin\Debug\netstandard2.0\TranslationMessages.pdb" />
+    <None Remove="TranslationMessages\obj\TranslationMessages.csproj.nuget.cache" />
+    <None Remove="TranslationMessages\obj\TranslationMessages.csproj.nuget.g.props" />
+    <None Remove="TranslationMessages\obj\TranslationMessages.csproj.nuget.g.targets" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.AssemblyInfoInputs.cache" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.csproj.CopyComplete" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.csproj.CoreCompileInputs.cache" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.csproj.FileListAbsolute.txt" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.csprojResolveAssemblyReference.cache" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.dll" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="TranslationMessages\bin\Debug\netstandard2.0\TranslationMessages.deps.json" />
+    <Content Remove="TranslationMessages\obj\project.assets.json" />
+  </ItemGroup>
+</Project>
