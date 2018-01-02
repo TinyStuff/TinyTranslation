@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{ECCA4C87-9C97-464C-A804-D3B41ED80EBA}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Translators/BingTranslator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Home/Index.cshtml">
     <Files>
       <File FileName="Interfaces/ITranslator.cs" Line="7" Column="22" />
       <File FileName="Services/TranslationService.cs" Line="21" Column="45" />
@@ -27,15 +27,15 @@
       <File FileName="Views/_ViewStart.cshtml" Line="1" Column="1" />
       <File FileName="Views/_ViewImports.cshtml" Line="1" Column="15" />
       <File FileName="Views/Shared/_Layout.cshtml" Line="1" Column="1" />
-      <File FileName="Views/Home/Index.cshtml" Line="13" Column="21" />
+      <File FileName="Views/Home/Index.cshtml" Line="8" Column="33" />
       <File FileName="ClientApp/app.js" Line="21" Column="16" />
       <File FileName="ClientApp/components/home-page.vue" Line="12" Column="1" />
-      <File FileName="ClientApp/components/translations.vue" Line="31" Column="21" />
-      <File FileName="ClientApp/components/transinput.vue" Line="7" Column="85" />
+      <File FileName="ClientApp/components/translations.vue" Line="4" Column="78" />
+      <File FileName="ClientApp/components/transinput.vue" Line="24" Column="50" />
       <File FileName="Models/TranslationTable.cs" Line="29" Column="37" />
       <File FileName="ClientApp/css/site.css" Line="10" Column="21" />
       <File FileName="Translators/BingTranslator.cs" Line="6" Column="2" />
-      <File FileName="mytest-3c1eddbcfc04.json" Line="13" Column="1" />
+      <File FileName="mytest-3c1eddbcfc04.json" Line="1" Column="1" />
       <File FileName="wwwroot/dist/main.js" Line="1" Column="1" />
       <File FileName="wwwroot/dist/main.js.map" Line="1" Column="1" />
       <File FileName="wwwroot/dist/vendor-manifest.json" Line="1" Column="1" />
