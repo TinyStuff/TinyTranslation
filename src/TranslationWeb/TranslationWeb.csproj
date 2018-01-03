@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Folder Include="translations\" />
+    <Folder Include="Startup\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.1.5" />
+    <PackageReference Include="SwashBuckle.AspNetCore.MicrosoftExtensions" Version="0.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TinyTranslation.Server\TinyTranslation.Server.csproj" />
+    <ProjectReference Include="..\TinyTranslation.Bing\TinyTranslation.Bing.csproj" />
+    <ProjectReference Include="..\TinyTranslatons\TinyTranslation.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Services\TranslationDictionary.cs" />
+    <Compile Remove="TranslationMessages\SocketMessages\LanguageChange.cs" />
+    <Compile Remove="TranslationMessages\SocketMessages\LanguageChanged.cs" />
+    <Compile Remove="TranslationMessages\SocketMessages\TranslationAdded.cs" />
+    <Compile Remove="TranslationMessages\SocketMessages\TranslationUpdated.cs" />
+    <Compile Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.AssemblyInfo.cs" />
+    <Compile Remove="TinyTranslation.Server\TranslationService.cs" />
+    <Compile Remove="TinyTranslation.Server\TranslationTable.cs" />
+    <Compile Remove="TinyTranslation.Server\Interfaces\ITranslationStorage.cs" />
+    <Compile Remove="TinyTranslation.Server\Interfaces\ITranslator.cs" />
+    <Compile Remove="TinyTranslation.Server\Storage\FileStorage.cs" />
+    <Compile Remove="TinyTranslation.Server\Translators\BingTranslator.cs" />
+    <Compile Remove="TinyTranslation.Server\Translators\DumbTranslator.cs" />
+    <Compile Remove="TinyTranslation.Server\Translators\GoogleTranslator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="TranslationMessages\bin\Debug\netstandard2.0\TinyWebSockets.dll" />
+    <None Remove="TranslationMessages\bin\Debug\netstandard2.0\TinyWebSockets.pdb" />
+    <None Remove="TranslationMessages\bin\Debug\netstandard2.0\TranslationMessages.dll" />
+    <None Remove="TranslationMessages\bin\Debug\netstandard2.0\TranslationMessages.pdb" />
+    <None Remove="TranslationMessages\obj\TranslationMessages.csproj.nuget.cache" />
+    <None Remove="TranslationMessages\obj\TranslationMessages.csproj.nuget.g.props" />
+    <None Remove="TranslationMessages\obj\TranslationMessages.csproj.nuget.g.targets" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.AssemblyInfoInputs.cache" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.csproj.CopyComplete" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.csproj.CoreCompileInputs.cache" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.csproj.FileListAbsolute.txt" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.csprojResolveAssemblyReference.cache" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.dll" />
+    <None Remove="TranslationMessages\obj\Debug\netstandard2.0\TranslationMessages.pdb" />
+    <None Remove="TinyTranslation.Server\obj\TinyTranslation.Server.csproj.nuget.cache" />
+    <None Remove="TinyTranslation.Server\obj\TinyTranslation.Server.csproj.nuget.g.props" />
+    <None Remove="TinyTranslation.Server\obj\TinyTranslation.Server.csproj.nuget.g.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="TranslationMessages\bin\Debug\netstandard2.0\TranslationMessages.deps.json" />
+    <Content Remove="TranslationMessages\obj\project.assets.json" />
+    <Content Remove="TinyTranslation.Server\obj\project.assets.json" />
+  </ItemGroup>
+</Project>

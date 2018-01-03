@@ -1,0 +1,52 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslationWeb", "TranslationWeb\TranslationWeb.csproj", "{ECCA4C87-9C97-464C-A804-D3B41ED80EBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTranslation", "TinyTranslatons\TinyTranslation.csproj", "{C172ABE2-0E35-49A8-94F9-2CB1B5383D6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTranslation.Server", "TinyTranslation.Server\TinyTranslation.Server.csproj", "{B183C73B-D7D6-4376-A437-4780A9CAA6B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebServer", "WebServer", "{E7587306-894B-4C23-8D47-9629A11C641E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TinyTranslation", "TinyTranslation", "{06D7A082-BC3D-4530-97F4-1D3E391ACD90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTranslation.Google", "TinyTranslation.Google\TinyTranslation.Google.csproj", "{D18DA931-429A-4ED8-93F8-46074579F6A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTranslation.Bing", "TinyTranslation.Bing\TinyTranslation.Bing.csproj", "{97125B02-A488-4D13-9EAE-81FD73F19C8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECCA4C87-9C97-464C-A804-D3B41ED80EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECCA4C87-9C97-464C-A804-D3B41ED80EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECCA4C87-9C97-464C-A804-D3B41ED80EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECCA4C87-9C97-464C-A804-D3B41ED80EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C172ABE2-0E35-49A8-94F9-2CB1B5383D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C172ABE2-0E35-49A8-94F9-2CB1B5383D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C172ABE2-0E35-49A8-94F9-2CB1B5383D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C172ABE2-0E35-49A8-94F9-2CB1B5383D6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B183C73B-D7D6-4376-A437-4780A9CAA6B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B183C73B-D7D6-4376-A437-4780A9CAA6B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B183C73B-D7D6-4376-A437-4780A9CAA6B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B183C73B-D7D6-4376-A437-4780A9CAA6B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D18DA931-429A-4ED8-93F8-46074579F6A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D18DA931-429A-4ED8-93F8-46074579F6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D18DA931-429A-4ED8-93F8-46074579F6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D18DA931-429A-4ED8-93F8-46074579F6A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97125B02-A488-4D13-9EAE-81FD73F19C8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97125B02-A488-4D13-9EAE-81FD73F19C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97125B02-A488-4D13-9EAE-81FD73F19C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97125B02-A488-4D13-9EAE-81FD73F19C8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ECCA4C87-9C97-464C-A804-D3B41ED80EBA} = {E7587306-894B-4C23-8D47-9629A11C641E}
+		{B183C73B-D7D6-4376-A437-4780A9CAA6B8} = {06D7A082-BC3D-4530-97F4-1D3E391ACD90}
+		{C172ABE2-0E35-49A8-94F9-2CB1B5383D6E} = {06D7A082-BC3D-4530-97F4-1D3E391ACD90}
+		{D18DA931-429A-4ED8-93F8-46074579F6A1} = {06D7A082-BC3D-4530-97F4-1D3E391ACD90}
+		{97125B02-A488-4D13-9EAE-81FD73F19C8E} = {06D7A082-BC3D-4530-97F4-1D3E391ACD90}
+	EndGlobalSection
+EndGlobal
