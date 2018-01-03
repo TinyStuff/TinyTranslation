@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TinyTranslation.Translators;
 using Swashbuckle.AspNetCore.Swagger;
+using TinyTranslation.EFStore.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace TranslationWeb
 {
@@ -26,6 +28,9 @@ namespace TranslationWeb
                 options.AllowedLocales.Add("es");
                 options.Translator = new BingTranslator(Configuration["BingTranslator:Key"]);
             });
+
+            services.AddDbContext<TranslationDbContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSwaggerGen(c =>
             {
