@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TinyTranslation;
+using TinyTranslation.EFStore;
+using TinyTranslation.EFStore.Data;
 
 namespace TranslationWeb.Controllers
 {
@@ -9,9 +12,11 @@ namespace TranslationWeb.Controllers
     public class TranslationController : Controller
     {
         private TranslationService _service;
+        private TranslationDbContext _ctx;
 
-        public TranslationController(TranslationService service) {
+        public TranslationController(TranslationService service, TranslationDbContext ctx) {
             _service = service;
+            _ctx = ctx;
         } 
         
         [HttpGet()]
@@ -31,7 +36,17 @@ namespace TranslationWeb.Controllers
         [HttpGet("{locale}/{key}")]
         public string Get(string locale, string key)
         {
-            return _service.Get(locale, System.Net.WebUtility.UrlDecode(key));
+            var ret = _service.Get(locale, System.Net.WebUtility.UrlDecode(key));
+            HandleDbStorage();
+            return ret;
+        }
+
+        private void HandleDbStorage()
+        {
+            var dbStorage = _service.GetStorage() as DbStorage;
+            if (dbStorage!=null) {
+                dbStorage.SaveWithContext(_ctx);
+            }
         }
 
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -39,6 +54,7 @@ namespace TranslationWeb.Controllers
         public void Update(string locale, string key, string value)
         {
             _service.Update(locale, System.Net.WebUtility.UrlDecode(key), System.Net.WebUtility.UrlDecode(value));
+            HandleDbStorage();
         }
 
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]

@@ -8,6 +8,8 @@ using TinyTranslation.Translators;
 using Swashbuckle.AspNetCore.Swagger;
 using TinyTranslation.EFStore.Data;
 using Microsoft.EntityFrameworkCore;
+using TinyTranslation.Interfaces;
+using System;
 
 namespace TranslationWeb
 {
@@ -23,14 +25,26 @@ namespace TranslationWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<TranslationDbContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), (b) => {
+                    b.MigrationsAssembly("TranslationWeb");
+                }));
+
+            services.AddScoped<Func<TranslationDbContext>>((arg) => {
+                return new Func<TranslationDbContext>(() =>
+                {
+                    return arg.GetRequiredService<TranslationDbContext>();
+                });
+            });
+
+            services.AddSingleton<ITranslationStorage, TinyTranslation.EFStore.DbStorage>();
             services.AddTranslationService(options =>
             {
                 options.AllowedLocales.Add("es");
+                //options.Storage = new TinyTranslation.EFStore.DbStorage()
                 options.Translator = new BingTranslator(Configuration["BingTranslator:Key"]);
             });
 
-            services.AddDbContext<TranslationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSwaggerGen(c =>
             {
@@ -56,7 +70,6 @@ namespace TranslationWeb
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
 
             app.UseSwagger();  
             app.UseSwaggerUI(c =>

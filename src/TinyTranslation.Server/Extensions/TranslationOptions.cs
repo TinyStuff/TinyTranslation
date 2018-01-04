@@ -33,6 +33,5 @@ namespace TinyTranslation
 
         public ITranslator Translator { get; set; } = new DumbTranslator();
 
-        public ITranslationStorage Storage { get; set; } = new FileStorage();
     }
 }

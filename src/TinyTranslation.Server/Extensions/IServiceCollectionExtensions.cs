@@ -9,12 +9,12 @@ namespace Microsoft.Extensions.DependencyInjection
         public static void AddTranslationService(this IServiceCollection services, Action<TranslationOptions> setupAction)
         {
             var settings = new TranslationOptions();
+
             setupAction.Invoke(settings);
-            var trans = new TranslationService(settings);
-            services.AddTransient<TranslationService>((arg) =>
-            {
-                return trans;
+            services.AddSingleton<TranslationOptions>((arg) => {
+                return settings;
             });
+            services.AddSingleton<TranslationService>();
         }
     }
 }

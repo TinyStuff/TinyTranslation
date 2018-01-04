@@ -3,12 +3,17 @@
         <h2>Translations</h2>
         <p>Translate your all keys here and it will be stored directly.<br />If autotranslation is enabled you will get suggestions translated from main language</p>
         <span class="right"><strong>{{nokeys}}</strong> keys</span>
+
         <p v-if="!translations"><em><i class="fas fa-spinner fa-spin" />&nbsp;Loading</em></p>
         <ul class="langs">
             <li v-for="l in languages">
                 {{l.name}}
             </li>
         </ul>
+        <div class="addnew">
+            <span>Add</span>
+            <transinput isopen="true" locale="default" isnew="true" />
+        </div>
         <table class="table" v-if="translations">
             <thead>
                 <tr>

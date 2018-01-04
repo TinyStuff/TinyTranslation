@@ -1,14 +1,15 @@
 ﻿<template>
     <div class="ff">
-        <span class="langname">{{langName}}</span>
+        <span class="langname" v-if="!isNew">{{langName}}</span>
         <span class="oldvalue" v-if="!editing" v-on:click="editing=!editing">{{oldValue}}</span>
         <div v-if="editing" class="editbox">
             <span v-if="saving" class="saving">Saving</span>
-            <textarea v-if="!saving" v-model="newValue" @blur="save" @focus="getsugg" /> <span v-if="oldValue!=newValue">({{oldValue}})</span>
-            <div @click="getsugg">{{suggest}}</div>
+            <input v-model="key" v-if="isNew" placeholder="New key" />
+            <textarea v-if="!saving" v-model="newValue" @focus="getsugg" /> <span v-if="oldValue!=newValue">({{oldValue}})</span>
+            <div @click="getsugg" v-if="!isNew">{{suggest}}</div>
             <div class="tools lefttools">
                 <span @click="save" class="savebtn"><i class="fa fa-check" /></span>
-                <span v-on:click="editing=false" class="closebtn"><i class="fa fa-times" /></span>
+                <span v-on:click="editing=false" class="closebtn" v-if="!isNew"><i class="fa fa-times" /></span>
             </div>
         </div>
     </div>
@@ -16,11 +17,12 @@
 <script>
 
 export default {
-    props: ['transkey','value','locale'],
+    props: ['transkey','value','locale','isnew','isopen'],
     data() {
         return {
             saving: false,
-            editing: false,
+            editing: !!this.isopen,
+            isNew: this.isnew,
             lang: this.locale,
             key: this.transkey,
             hasTranslated: false,

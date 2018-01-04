@@ -26,15 +26,20 @@ namespace TinyTranslation
             defaultLanguage = AddLocale(defaultLocale, false);
         }
 
-        public TranslationService(TranslationOptions settings)
+        public TranslationService(TranslationOptions settings, ITranslationStorage storage)
         {
-            this.storage = settings.Storage;
+            this.storage = storage;
             this.translator = settings.Translator;
             defaultLanguage = AddLocale(settings.DefaultLocale, false);
             if (settings.AllowedLocales.Any())
                 SetAllowedLocales(settings.AllowedLocales.ToArray());
             AutoLoadAllowedLocales = settings.AutoLoadAllowedLocales;
             AutoTranslateNewLocales = settings.AutoTranslateNewLocales;
+        }
+
+        public ITranslationStorage GetStorage()
+        {
+            return storage;
         }
 
         public async Task<string> AutoTranslate(string key, string to)
@@ -111,6 +116,10 @@ namespace TinyTranslation
             }
             else
                 DefaultLocale = locale;
+            if (storage is ITranslationMonitor monitor)
+            {
+                monitor.StartMonitoring(ret);
+            }
             ret.IsPrimaryLanguage = !copyFromDefault;
             return ret;
         }
