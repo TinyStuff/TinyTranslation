@@ -18,18 +18,9 @@ namespace TranslationWeb
     {
         public static void Main(string[] args)
         {
-            var host = BuildWebHost(args);
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-
-                var dbcontext = services.GetRequiredService<TranslationDbContext>();
-                var dbstore = services.GetRequiredService<ITranslationStorage>() as DbStorage;
-                if (dbstore != null)
-                    dbstore.SetContext(dbcontext);
-
-            }
-            host.Run();
+            BuildWebHost(args)
+                //.PopulateTranslationDb() Needed to 
+                .Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

@@ -45,7 +45,7 @@ namespace TinyTranslation.Storage
                     foreach (var newword in dict.GetAllTranslations())
                     {
                         writer.Write(newword.Key);
-                        writer.Write(separator);
+                        writer.Write("##");
                         writer.WriteLine(newword.Value);
                     }
                 }

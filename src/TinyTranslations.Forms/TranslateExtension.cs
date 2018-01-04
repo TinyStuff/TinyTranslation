@@ -1,8 +1,9 @@
 ﻿using System;
+using TinyTranslatio.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TinyTranslations.Forms
+namespace TinyTranslation.Forms
 {
     [ContentProperty("Text")]
     public class ansExtension : IMarkupExtension

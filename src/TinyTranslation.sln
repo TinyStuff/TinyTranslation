@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTranslation", "TinyTran
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTranslation.Server", "TinyTranslation.Server\TinyTranslation.Server.csproj", "{B183C73B-D7D6-4376-A437-4780A9CAA6B8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebServer", "WebServer", "{E7587306-894B-4C23-8D47-9629A11C641E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{E7587306-894B-4C23-8D47-9629A11C641E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TinyTranslation", "TinyTranslation", "{06D7A082-BC3D-4530-97F4-1D3E391ACD90}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTranslation.Bing", "TinyTranslation.Bing\TinyTranslation.Bing.csproj", "{97125B02-A488-4D13-9EAE-81FD73F19C8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTranslation.EFStore", "TinyTranslation.EFStore\TinyTranslation.EFStore.csproj", "{A295AE8E-97F1-42AB-A9EB-E759F963FCFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyTranslation.Forms", "TinyTranslations.Forms\TinyTranslation.Forms.csproj", "{AFF893CF-11C8-4044-98FF-FD4F8CDCE7F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{A295AE8E-97F1-42AB-A9EB-E759F963FCFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A295AE8E-97F1-42AB-A9EB-E759F963FCFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A295AE8E-97F1-42AB-A9EB-E759F963FCFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF893CF-11C8-4044-98FF-FD4F8CDCE7F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF893CF-11C8-4044-98FF-FD4F8CDCE7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF893CF-11C8-4044-98FF-FD4F8CDCE7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF893CF-11C8-4044-98FF-FD4F8CDCE7F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{ECCA4C87-9C97-464C-A804-D3B41ED80EBA} = {E7587306-894B-4C23-8D47-9629A11C641E}
@@ -55,5 +61,6 @@ Global
 		{D18DA931-429A-4ED8-93F8-46074579F6A1} = {06D7A082-BC3D-4530-97F4-1D3E391ACD90}
 		{97125B02-A488-4D13-9EAE-81FD73F19C8E} = {06D7A082-BC3D-4530-97F4-1D3E391ACD90}
 		{A295AE8E-97F1-42AB-A9EB-E759F963FCFD} = {06D7A082-BC3D-4530-97F4-1D3E391ACD90}
+		{AFF893CF-11C8-4044-98FF-FD4F8CDCE7F2} = {06D7A082-BC3D-4530-97F4-1D3E391ACD90}
 	EndGlobalSection
 EndGlobal

@@ -7,6 +7,7 @@ using TinyTranslation.EFStore.Data.Models;
 
 namespace TinyTranslation.EFStore
 {
+
     public class DbStorage : Interfaces.ITranslationStorage, Interfaces.ITranslationMonitor
     {
 
@@ -95,9 +96,10 @@ namespace TinyTranslation.EFStore
                 context.SaveChanges();
             foreach (var m in monitors.Where(d => d.Value.NeedSaving))
             {
-                if (m.Value.LangId==0) {
+                if (m.Value.LangId == 0)
+                {
                     var l = locales.FirstOrDefault(d => d.Key == m.Key);
-                    if (l.Value.LocalID>0)
+                    if (l.Value.LocalID > 0)
                         m.Value.LangId = l.Value.LocalID;
                 }
                 MatchLocale(m.Value, context);
@@ -107,10 +109,11 @@ namespace TinyTranslation.EFStore
 
         private void MatchLocale(LanguageMonitor m, TranslationDbContext ctx)
         {
-            
+
             foreach (var trans in m.Translations.Values)
             {
-                if (trans.LocalID==0) {
+                if (trans.LocalID == 0)
+                {
                     trans.LocalID = m.LangId;
                 }
                 if (trans.TranslationID == 0)

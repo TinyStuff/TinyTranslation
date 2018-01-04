@@ -10,6 +10,7 @@ using TinyTranslation.EFStore.Data;
 using Microsoft.EntityFrameworkCore;
 using TinyTranslation.Interfaces;
 using System;
+using TinyTranslation.Storage;
 
 namespace TranslationWeb
 {
@@ -25,19 +26,14 @@ namespace TranslationWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Use database storage instead
             services.AddDbContext<TranslationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), (b) => {
                     b.MigrationsAssembly("TranslationWeb");
                 }));
+            //services.AddSingleton<ITranslationStorage, TinyTranslation.EFStore.DbStorage>();
 
-            services.AddScoped<Func<TranslationDbContext>>((arg) => {
-                return new Func<TranslationDbContext>(() =>
-                {
-                    return arg.GetRequiredService<TranslationDbContext>();
-                });
-            });
-
-            services.AddSingleton<ITranslationStorage, TinyTranslation.EFStore.DbStorage>();
+            services.AddSingleton<ITranslationStorage, FileStorage>();
             services.AddTranslationService(options =>
             {
                 options.AllowedLocales.Add("es");
@@ -52,7 +48,7 @@ namespace TranslationWeb
             });
 
             services.AddMvc();
-                
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,7 +67,7 @@ namespace TranslationWeb
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseSwagger();  
+            app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");

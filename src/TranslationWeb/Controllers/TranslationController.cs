@@ -17,7 +17,7 @@ namespace TranslationWeb.Controllers
         public TranslationController(TranslationService service, TranslationDbContext ctx) {
             _service = service;
             _ctx = ctx;
-        } 
+        }
         
         [HttpGet()]
         public TranslationTable GetLanguages()
