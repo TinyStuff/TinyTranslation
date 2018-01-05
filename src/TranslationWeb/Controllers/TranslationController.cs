@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TinyTranslation;
 using TinyTranslation.EFStore;
@@ -7,32 +8,43 @@ using TinyTranslation.EFStore.Data;
 
 namespace TranslationWeb.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     public class TranslationController : Controller
     {
         private TranslationService _service;
         private TranslationDbContext _ctx;
 
-        public TranslationController(TranslationService service, TranslationDbContext ctx) {
+        public TranslationController(TranslationService service, TranslationDbContext ctx)
+        {
             _service = service;
             _ctx = ctx;
         }
-        
-        [HttpGet()]
+
+        private void HandleDbStorage()
+        {
+            var dbStorage = _service.GetStorage() as DbStorage;
+            if (dbStorage != null)
+            {
+                dbStorage.SaveWithContext(_ctx);
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
         public TranslationTable GetLanguages()
         {
             return _service.GetTableData();
         }
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize]
         [HttpGet("{locale}")]
         public IDictionary<string, string> Get(string locale)
         {
             return _service.GetTranslations(locale);
         }
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize]
         [HttpGet("{locale}/{key}")]
         public string Get(string locale, string key)
         {
@@ -41,15 +53,7 @@ namespace TranslationWeb.Controllers
             return ret;
         }
 
-        private void HandleDbStorage()
-        {
-            var dbStorage = _service.GetStorage() as DbStorage;
-            if (dbStorage!=null) {
-                dbStorage.SaveWithContext(_ctx);
-            }
-        }
-
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize]
         [HttpPut("{locale}/{key}/{value}")]
         public void Update(string locale, string key, string value)
         {
@@ -57,7 +61,7 @@ namespace TranslationWeb.Controllers
             HandleDbStorage();
         }
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize]
         [HttpDelete("{key}")]
         public void Delete(string key)
         {

@@ -7,8 +7,11 @@ namespace TinyTranslation
 {
     public class TranslationClient
     {
-        public TranslationClient(Uri baseUrl)
+        readonly string token;
+
+        public TranslationClient(Uri baseUrl, string token)
         {
+            this.token = token;
             baseUri = baseUrl;
         }
 
@@ -28,6 +31,7 @@ namespace TinyTranslation
                 else {
                     _client = new HttpClient(MessageHandler);
                 }
+                _client.DefaultRequestHeaders.Add("Authorization", "Bearer "+token);
             }
             return _client;
         }

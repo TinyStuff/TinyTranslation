@@ -88,6 +88,7 @@ export default {
     },
     async created() {
         try {
+            console.log('http',this.$http);
             let response = await this.$http.get('/api/translation')
             console.log(response.data);
             this.translations = response.data;
