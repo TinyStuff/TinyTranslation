@@ -4,11 +4,16 @@
         <span class="oldvalue" v-if="!editing" v-on:click="editing=!editing">{{oldValue}}</span>
         <div v-if="editing" class="editbox">
             <span v-if="saving" class="saving">Saving</span>
-            <input v-model="key" v-if="isNew" placeholder="New key" />
+            <div v-if="isNew">
+                <label>Key</label>
+                <input v-model="key" placeholder="New key" />
+                <label>Default language translation</label>
+            </div>
             <textarea v-if="!saving" v-model="newValue" @focus="getsugg" /> <span v-if="oldValue!=newValue">({{oldValue}})</span>
-            <div @click="getsugg" v-if="!isNew">{{suggest}}</div>
+            <div @click="getsugg" v-if="hasTranslated">{{suggest}}</div>
             <div class="tools lefttools">
                 <span @click="save" class="savebtn"><i class="fa fa-check" /></span>
+                <span v-if="!isNew" @click="getsugg"><i class="fa fa-magic" /></span>
                 <span v-on:click="editing=false" class="closebtn" v-if="!isNew"><i class="fa fa-times" /></span>
             </div>
         </div>
@@ -68,24 +73,25 @@ export default {
 }
 </script>
 <style>
-    .ff input {
-        border:0;
-        border-bottom: dotted 1px #53B7CE;
-        background:transparent;
-    }
-    .lefttools {
+
+    div.lefttools {
         text-align:left;
     }
 
     .editbox {
         position:relative;
-        background-color: #ddd;
+        background-color: #eee;
         border:solid 1px #ccc;
-        padding:5px;
+        padding:10px;
     }
 
     .closebtn {
 
+    }
+
+    textarea {
+        width:300px;
+        border:solid 1px #ccc;
     }
 
     .langname {
@@ -93,7 +99,7 @@ export default {
     }
 
     .tools > .savebtn {
-        background-color: green;
+        background-color: #27ae60;
     }
 
     .tools > .closebtn {

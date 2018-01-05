@@ -14,9 +14,9 @@ namespace TinyTranslatio.Forms
 
         }
 
-        public TranslationHelper(Uri serverUri)
+        public TranslationHelper(Uri serverUri, string key)
         {
-            httpClient = new TranslationClient(serverUri);
+            httpClient = new TranslationClient(serverUri, key);
             SetFetchMethod();
         }
 

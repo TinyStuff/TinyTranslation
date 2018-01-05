@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "bfbe3228eadd8c5e7ac0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "801848d019773452f90a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -706,7 +706,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(46)(__webpack_require__.s = 46);
+/******/ 	return hotCreateRequire(47)(__webpack_require__.s = 47);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10633,7 +10633,7 @@ return Vue$3;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ }),
 /* 2 */
@@ -10967,17 +10967,9 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(2)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.valuetd {\n    background-color:#fcfcfc;\n    border-bottom: 1px #aaa;\n}\n.right {\n    float:right;\n    font-size:20px;\n}\n.langs {\n    list-style:none;\n    margin:0;\n    padding:0;\n}\n.keyvalue {\n    text-align:right;\n}\n.tools {\n    text-align:right;\n}\n.tools > span {\n    margin-left: 10px;\n    text-align: center;\n    height:20px;\n    width:20px;\n    display:inline-block;\n    line-height:20px;\n    font-size: 12px;\n    color: #fff;\n    border-radius: 20px;\n    background-color: red;\n}\n.langs li {\n    display:inline-block;\n    margin-right: 10px;\n    padding: 2px 8px;\n    text-transform: uppercase;\n    color: #fff;\n    border-radius: 20px;\n    background-color: #53B7CE;\n}\n.value input {\n    width: 190px;\n    display:inline-block;\n}\n", "", {"version":3,"sources":["/Users/mats/Projects/TinyTranslation/src/TranslationWeb/ClientApp/components/translations.vue?2adbb227"],"names":[],"mappings":";AAqGA;IACA,yBAAA;IACA,wBAAA;CACA;AACA;IACA,YAAA;IACA,eAAA;CACA;AACA;IACA,gBAAA;IACA,SAAA;IACA,UAAA;CACA;AAEA;IACA,iBAAA;CACA;AACA;IACA,iBAAA;CACA;AACA;IACA,kBAAA;IACA,mBAAA;IACA,YAAA;IACA,WAAA;IACA,qBAAA;IACA,iBAAA;IACA,gBAAA;IACA,YAAA;IACA,oBAAA;IACA,sBAAA;CACA;AAEA;IACA,qBAAA;IACA,mBAAA;IACA,iBAAA;IACA,0BAAA;IACA,YAAA;IACA,oBAAA;IACA,0BAAA;CACA;AAEA;IACA,aAAA;IACA,qBAAA;CACA","file":"translations.vue","sourcesContent":["<template>\r\n    <div>\r\n        <h2>Translations</h2>\r\n        <p>Translate your all keys here and it will be stored directly.<br />If autotranslation is enabled you will get suggestions translated from main language</p>\r\n        <span class=\"right\"><strong>{{nokeys}}</strong> keys</span>\r\n\r\n        <p v-if=\"!translations\"><em><i class=\"fas fa-spinner fa-spin\" />&nbsp;Loading</em></p>\r\n        <ul class=\"langs\">\r\n            <li v-for=\"l in languages\">\r\n                {{l.name}}\r\n            </li>\r\n        </ul>\r\n        <div class=\"addnew\">\r\n            <span>Add</span>\r\n            <transinput isopen=\"true\" locale=\"default\" isnew=\"true\" />\r\n        </div>\r\n        <table class=\"table\" v-if=\"translations\">\r\n            <thead>\r\n                <tr>\r\n                    <th class=\"key\">Key</th>\r\n                    <th>Values</th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr v-for=\"(value,key) in translations.values\">\r\n                    <td class=\"key\">\r\n                        <div class=\"keyvalue\">\"{{ key }}\"</div>\r\n                        <div class=\"tools\">\r\n                            <span @click=\"dodelete(key)\"><i class=\"fa fa-times\" /></span>\r\n                        </div>\r\n                    </td>\r\n                    <td class=\"valuetd\">\r\n                        <div class=\"value\" v-for=\"(lang,idx) in value\"><transinput :locale=\"translations.locales[idx]\" :transkey=\"key\" :value=\"lang\" /></div>\r\n                    </td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n\r\n    </div>\r\n</template>\r\n<script>\r\nimport Vue from 'vue'\r\nimport TransInput from './transinput'\r\n\r\nVue.component('transinput', TransInput);\r\n\r\nexport default {\r\n    data() {\r\n        return {\r\n            translations: {}\r\n        }\r\n    },\r\n\r\n    methods: {\r\n        reload:function() {\r\n            this.$http\r\n                .get('/api/translation')\r\n                .then(response => {\r\n                    this.translations = response.data;\r\n                });\r\n        },\r\n        dodelete:function(key) {\r\n            this.$http.delete('/api/translation/'+key).then(response => {\r\n                delete this.translations.values[key];\r\n                this.reload();\r\n            });\r\n        }\r\n    },\r\n    computed: {\r\n        nokeys: function() {\r\n            if (this.translations.values)\r\n                return Object.keys(this.translations.values).length;\r\n            return 0;\r\n        },\r\n        languages: function(l) {\r\n\r\n            if (this.translations.locales)\r\n                return this.translations.locales.map(function(v,i) {\r\n                    return {\r\n                        locale: v,\r\n                        idx: i,\r\n                        name: window.$languageNames[v]\r\n                    };\r\n                });\r\n\r\n            return [];\r\n        }\r\n    },\r\n    async created() {\r\n        try {\r\n            console.log('http',this.$http);\r\n            let response = await this.$http.get('/api/translation')\r\n            console.log(response.data);\r\n            this.translations = response.data;\r\n        } catch (error) {\r\n            console.log(error)\r\n        }\r\n    }\r\n}\r\n</script>\r\n<style>\r\n    .valuetd {\r\n        background-color:#fcfcfc;\r\n        border-bottom: 1px #aaa;\r\n    }\r\n    .right {\r\n        float:right;\r\n        font-size:20px;\r\n    }\r\n    .langs {\r\n        list-style:none;\r\n        margin:0;\r\n        padding:0;\r\n    }\r\n\r\n    .keyvalue {\r\n        text-align:right;\r\n    }\r\n    .tools {\r\n        text-align:right;\r\n    }\r\n    .tools > span {\r\n        margin-left: 10px;\r\n        text-align: center;\r\n        height:20px;\r\n        width:20px;\r\n        display:inline-block;\r\n        line-height:20px;\r\n        font-size: 12px;\r\n        color: #fff;\r\n        border-radius: 20px;\r\n        background-color: red;\r\n    }\r\n\r\n    .langs li {\r\n        display:inline-block;\r\n        margin-right: 10px;\r\n        padding: 2px 8px;\r\n        text-transform: uppercase;\r\n        color: #fff;\r\n        border-radius: 20px;\r\n        background-color: #53B7CE;\r\n    }\r\n\r\n    .value input {\r\n        width: 190px;\r\n        display:inline-block;\r\n    }\r\n</style>"],"sourceRoot":""}]);
-
-// exports
-
+module.exports = vendor_10dee78e3be1ee06b73e;
 
 /***/ }),
 /* 6 */
@@ -10988,7 +10980,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "\n.valuetd {\n    background-color:#fcfcfc;\n    border-bottom: 1px #aaa;\n}\n.right {\n    float:right;\n    font-size:20px;\n}\n.langs {\n    list-style:none;\n    margin:0;\n    padding:0;\n}\n.keyvalue {\n    text-align:right;\n}\n.tools {\n    text-align:right;\n}\n.tools > span {\n    margin-left: 10px;\n    text-align: center;\n    height:20px;\n    width:20px;\n    display:inline-block;\n    line-height:20px;\n    font-size: 12px;\n    color: #fff;\n    border-radius: 20px;\n    background-color: red;\n}\n.langs li {\n    display:inline-block;\n    margin-right: 10px;\n    padding: 2px 8px;\n    text-transform: uppercase;\n    color: #fff;\n    border-radius: 20px;\n    background-color: #53B7CE;\n}\n.value input {\n    width: 190px;\n    display:inline-block;\n}\n", "", {"version":3,"sources":["/Users/mats/Projects/TinyTranslation/src/TranslationWeb/ClientApp/components/login.vue?196dbad7"],"names":[],"mappings":";AA4DA;IACA,yBAAA;IACA,wBAAA;CACA;AACA;IACA,YAAA;IACA,eAAA;CACA;AACA;IACA,gBAAA;IACA,SAAA;IACA,UAAA;CACA;AAEA;IACA,iBAAA;CACA;AACA;IACA,iBAAA;CACA;AACA;IACA,kBAAA;IACA,mBAAA;IACA,YAAA;IACA,WAAA;IACA,qBAAA;IACA,iBAAA;IACA,gBAAA;IACA,YAAA;IACA,oBAAA;IACA,sBAAA;CACA;AAEA;IACA,qBAAA;IACA,mBAAA;IACA,iBAAA;IACA,0BAAA;IACA,YAAA;IACA,oBAAA;IACA,0BAAA;CACA;AAEA;IACA,aAAA;IACA,qBAAA;CACA","file":"login.vue","sourcesContent":["<template>\r\n    <div>\r\n        <h2>Login</h2>\r\n        <div v-if=\"hasToken\">\r\n            Logged in\r\n        </div>\r\n        <div v-if=\"!hasToken\">\r\n            Logged in\r\n            <label for=\"username\">Username</label>\r\n            <input id=\"username\" v-model=\"username\" />\r\n            <label for=\"password\">Username</label>\r\n            <input id=\"password\" v-model=\"password\" type=\"password\" />\r\n            <div class=\"button\" @click=\"signin\">Sign in</div>\r\n        </div>\r\n    </div>\r\n</template>\r\n<script>\r\nimport Vue from 'vue'\r\n\r\nexport default {\r\n    data() {\r\n        return {\r\n            hasToken:false,\r\n            username:'',\r\n            password:'',\r\n            token: ''\r\n        };\r\n    },\r\n    methods: {\r\n        signin:function() {\r\n            var url = '/api/admin/login/'+this.username+'?password='+this.password;\r\n            this.$http.get(url).then(response => {\r\n                console.log(response);\r\n                if (response.status==200) {\r\n                    this.hasToken = true;\r\n                    this.token = window.$token = response.data;\r\n                    localStorage.setItem('token',response.data);\r\n                }\r\n            });\r\n        }\r\n    },\r\n    computed: {\r\n\r\n    },\r\n    async created() {\r\n        try {\r\n\r\n            this.token = localStorage.getItem('token');\r\n            console.log(this.token);\r\n            if (this.token) {\r\n                this.hasToken = true;\r\n                window.$token = this.token;\r\n            }\r\n        } catch (error) {\r\n            console.log(error)\r\n        }\r\n    }\r\n}\r\n</script>\r\n<style>\r\n    .valuetd {\r\n        background-color:#fcfcfc;\r\n        border-bottom: 1px #aaa;\r\n    }\r\n    .right {\r\n        float:right;\r\n        font-size:20px;\r\n    }\r\n    .langs {\r\n        list-style:none;\r\n        margin:0;\r\n        padding:0;\r\n    }\r\n\r\n    .keyvalue {\r\n        text-align:right;\r\n    }\r\n    .tools {\r\n        text-align:right;\r\n    }\r\n    .tools > span {\r\n        margin-left: 10px;\r\n        text-align: center;\r\n        height:20px;\r\n        width:20px;\r\n        display:inline-block;\r\n        line-height:20px;\r\n        font-size: 12px;\r\n        color: #fff;\r\n        border-radius: 20px;\r\n        background-color: red;\r\n    }\r\n\r\n    .langs li {\r\n        display:inline-block;\r\n        margin-right: 10px;\r\n        padding: 2px 8px;\r\n        text-transform: uppercase;\r\n        color: #fff;\r\n        border-radius: 20px;\r\n        background-color: #53B7CE;\r\n    }\r\n\r\n    .value input {\r\n        width: 190px;\r\n        display:inline-block;\r\n    }\r\n</style>"],"sourceRoot":""}]);
+exports.push([module.i, "\n.valuetd {\n    background-color:#fcfcfc;\n    border-bottom: 1px #aaa;\n}\n.right {\n    float:right;\n    font-size:20px;\n}\nlabel {\n    font-weight: 100;\n}\n.addnew .editbox {\n    border:0;\n    padding:13px 15px;\n    color:#fff;\n    background-color:#1abc9c;\n}\n.addnew .editbox input {\n    margin-bottom:10px;\n    display:block;\n}\n.langs {\n    list-style:none;\n    margin:0;\n    padding:0;\n}\n.keyvalue {\n    text-align:right;\n}\n.tools {\n    text-align:right;\n}\n.tools > span {\n    margin-right: 10px;\n    border:solid 1px #fff;\n    text-align: center;\n    height:20px;\n    width:20px;\n    display:inline-block;\n    line-height:20px;\n    font-size: 12px;\n    color: #fff;\n    border-radius: 20px;\n    background-color: #34495e;\n}\n.langs li {\n    display:inline-block;\n    margin-right: 10px;\n    padding: 2px 8px;\n    text-transform: uppercase;\n    color: #fff;\n    border-radius: 20px;\n    background-color: #53B7CE;\n}\n\n\n", "", {"version":3,"sources":["/Users/mats/Projects/TinyTranslation/src/TranslationWeb/ClientApp/components/translations.vue?75041eba"],"names":[],"mappings":";AAyGA;IACA,yBAAA;IACA,wBAAA;CACA;AACA;IACA,YAAA;IACA,eAAA;CACA;AAEA;IACA,iBAAA;CACA;AAEA;IACA,SAAA;IACA,kBAAA;IACA,WAAA;IACA,yBAAA;CACA;AACA;IACA,mBAAA;IACA,cAAA;CACA;AACA;IACA,gBAAA;IACA,SAAA;IACA,UAAA;CACA;AAEA;IACA,iBAAA;CACA;AACA;IACA,iBAAA;CACA;AACA;IACA,mBAAA;IACA,sBAAA;IACA,mBAAA;IACA,YAAA;IACA,WAAA;IACA,qBAAA;IACA,iBAAA;IACA,gBAAA;IACA,YAAA;IACA,oBAAA;IACA,0BAAA;CACA;AAEA;IACA,qBAAA;IACA,mBAAA;IACA,iBAAA;IACA,0BAAA;IACA,YAAA;IACA,oBAAA;IACA,0BAAA;CACA","file":"translations.vue","sourcesContent":["<template>\r\n    <div>\r\n        <div v-if=\"!loggedin\">Login first</div>\r\n        <div v-if=\"loggedin\">\r\n            <span class=\"right\"><strong>{{nokeys}}</strong> keys</span><h2>Translations</h2>\r\n            <p>Translate your all keys here and it will be stored directly.<br />If autotranslation is enabled you will get suggestions translated from main language</p>\r\n\r\n\r\n            <p v-if=\"!translations\"><em><i class=\"fas fa-spinner fa-spin\" />&nbsp;Loading</em></p>\r\n            <!--<ul class=\"langs\">\r\n                <li v-for=\"l in languages\">\r\n                    {{l.name}}\r\n                </li>\r\n            </ul>-->\r\n            <div class=\"addnew\">\r\n                <span>Add new</span>\r\n                <transinput isopen=\"true\" locale=\"default\" isnew=\"true\" />\r\n            </div>\r\n            <table class=\"table\" v-if=\"translations\">\r\n                <thead>\r\n                    <tr>\r\n                        <th class=\"key\">Key</th>\r\n                        <th>Values</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr v-for=\"(value,key) in translations.values\">\r\n                        <td class=\"key\">\r\n                            <div class=\"keyvalue\">\"{{ key }}\"</div>\r\n                            <div class=\"tools\">\r\n                                <span @click=\"dodelete(key)\"><i class=\"fa fa-times\" /></span>\r\n                            </div>\r\n                        </td>\r\n                        <td class=\"valuetd\">\r\n                            <div class=\"value\" v-for=\"(lang,idx) in value\"><transinput :locale=\"translations.locales[idx]\" :transkey=\"key\" :value=\"lang\" /></div>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n</template>\r\n<script>\r\nimport Vue from 'vue'\r\nimport TransInput from './transinput'\r\n\r\nVue.component('transinput', TransInput);\r\n\r\nexport default {\r\n    data() {\r\n        return {\r\n            translations: {},\r\n            loggedin: true\r\n        }\r\n    },\r\n\r\n    methods: {\r\n        reload:function() {\r\n            this.$http\r\n                .get('/api/translation')\r\n                .then(response => {\r\n                    this.translations = response.data;\r\n                });\r\n        },\r\n        dodelete:function(key) {\r\n            this.$http.delete('/api/translation/'+key).then(response => {\r\n                delete this.translations.values[key];\r\n                this.reload();\r\n            });\r\n        }\r\n    },\r\n    computed: {\r\n        nokeys: function() {\r\n            if (this.translations.values)\r\n                return Object.keys(this.translations.values).length;\r\n            return 0;\r\n        },\r\n        languages: function(l) {\r\n\r\n            if (this.translations.locales)\r\n                return this.translations.locales.map(function(v,i) {\r\n                    return {\r\n                        locale: v,\r\n                        idx: i,\r\n                        name: window.$languageNames[v]\r\n                    };\r\n                });\r\n\r\n            return [];\r\n        }\r\n    },\r\n    async created() {\r\n        try {\r\n            console.log('http',this.$http);\r\n            this.loggedin = !this.signedIn;\r\n            let response = await this.$http.get('/api/translation')\r\n            console.log(response.data);\r\n            this.translations = response.data;\r\n        } catch (error) {\r\n            console.log(error)\r\n        }\r\n    }\r\n}\r\n</script>\r\n<style>\r\n    .valuetd {\r\n        background-color:#fcfcfc;\r\n        border-bottom: 1px #aaa;\r\n    }\r\n    .right {\r\n        float:right;\r\n        font-size:20px;\r\n    }\r\n\r\n    label {\r\n        font-weight: 100;\r\n    }\r\n\r\n    .addnew .editbox {\r\n        border:0;\r\n        padding:13px 15px;\r\n        color:#fff;\r\n        background-color:#1abc9c;\r\n    }\r\n    .addnew .editbox input {\r\n        margin-bottom:10px;\r\n        display:block;\r\n    }\r\n    .langs {\r\n        list-style:none;\r\n        margin:0;\r\n        padding:0;\r\n    }\r\n\r\n    .keyvalue {\r\n        text-align:right;\r\n    }\r\n    .tools {\r\n        text-align:right;\r\n    }\r\n    .tools > span {\r\n        margin-right: 10px;\r\n        border:solid 1px #fff;\r\n        text-align: center;\r\n        height:20px;\r\n        width:20px;\r\n        display:inline-block;\r\n        line-height:20px;\r\n        font-size: 12px;\r\n        color: #fff;\r\n        border-radius: 20px;\r\n        background-color: #34495e;\r\n    }\r\n\r\n    .langs li {\r\n        display:inline-block;\r\n        margin-right: 10px;\r\n        padding: 2px 8px;\r\n        text-transform: uppercase;\r\n        color: #fff;\r\n        border-radius: 20px;\r\n        background-color: #53B7CE;\r\n    }\r\n\r\n\r\n</style>"],"sourceRoot":""}]);
 
 // exports
 
@@ -11002,7 +10994,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "\n.ff input {\n    border:0;\n    border-bottom: dotted 1px #53B7CE;\n    background:transparent;\n}\n.lefttools {\n    text-align:left;\n}\n.editbox {\n    position:relative;\n    background-color: #ddd;\n    border:solid 1px #ccc;\n    padding:5px;\n}\n.closebtn {\n}\n.langname {\n    color:#333;\n}\n.tools > .savebtn {\n    background-color: green;\n}\n.tools > .closebtn {\n    background-color: #333;\n}\n.oldvalue {\n    border-bottom: dotted 1px #53B7CE;\n    padding: 2px 6px;\n    display: inline-block;\n}\nspan.saving {\n}\n", "", {"version":3,"sources":["/Users/mats/Projects/TinyTranslation/src/TranslationWeb/ClientApp/components/transinput.vue?96a24126"],"names":[],"mappings":";AAsEA;IACA,SAAA;IACA,kCAAA;IACA,uBAAA;CACA;AACA;IACA,gBAAA;CACA;AAEA;IACA,kBAAA;IACA,uBAAA;IACA,sBAAA;IACA,YAAA;CACA;AAEA;CAEA;AAEA;IACA,WAAA;CACA;AAEA;IACA,wBAAA;CACA;AAEA;IACA,uBAAA;CACA;AAEA;IACA,kCAAA;IACA,iBAAA;IACA,sBAAA;CACA;AAEA;CAEA","file":"transinput.vue","sourcesContent":["<template>\r\n    <div class=\"ff\">\r\n        <span class=\"langname\" v-if=\"!isNew\">{{langName}}</span>\r\n        <span class=\"oldvalue\" v-if=\"!editing\" v-on:click=\"editing=!editing\">{{oldValue}}</span>\r\n        <div v-if=\"editing\" class=\"editbox\">\r\n            <span v-if=\"saving\" class=\"saving\">Saving</span>\r\n            <input v-model=\"key\" v-if=\"isNew\" placeholder=\"New key\" />\r\n            <textarea v-if=\"!saving\" v-model=\"newValue\" @focus=\"getsugg\" /> <span v-if=\"oldValue!=newValue\">({{oldValue}})</span>\r\n            <div @click=\"getsugg\" v-if=\"!isNew\">{{suggest}}</div>\r\n            <div class=\"tools lefttools\">\r\n                <span @click=\"save\" class=\"savebtn\"><i class=\"fa fa-check\" /></span>\r\n                <span v-on:click=\"editing=false\" class=\"closebtn\" v-if=\"!isNew\"><i class=\"fa fa-times\" /></span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n<script>\r\n\r\nexport default {\r\n    props: ['transkey','value','locale','isnew','isopen'],\r\n    data() {\r\n        return {\r\n            saving: false,\r\n            editing: !!this.isopen,\r\n            isNew: this.isnew,\r\n            lang: this.locale,\r\n            key: this.transkey,\r\n            hasTranslated: false,\r\n            suggest: 'Click for autotranslation...',\r\n            oldValue: this.value,\r\n            newValue: this.value\r\n        }\r\n    },\r\n\r\n    methods: {\r\n        getsugg:function() {\r\n            if (!this.hasTranslated) {\r\n                this.$http.get('/api/admin/'+this.key+'/'+this.lang).then(resp=> {\r\n                    this.suggest = resp.data;\r\n                    this.hasTranslated = true;\r\n                });\r\n            }\r\n            else {\r\n                this.newValue = this.suggest;\r\n            }\r\n        },\r\n        save:function() {\r\n            if (this.newValue != this.oldValue) {\r\n                this.saving = true;\r\n                this.$http.put('/api/translation/'+this.lang+'/'+this.key+'/'+this.newValue)\r\n                    .then(response => {\r\n                        this.saving = false;\r\n                        this.oldValue = this.newValue;\r\n                        this.editing = false;\r\n                    });\r\n            }\r\n        }\r\n    },\r\n    computed: {\r\n        langName: function() {\r\n\r\n            if (window.$languageNames[this.lang]) {\r\n                return window.$languageNames[this.lang]+':';\r\n            }\r\n            return this.lang;\r\n        }\r\n    }\r\n}\r\n</script>\r\n<style>\r\n    .ff input {\r\n        border:0;\r\n        border-bottom: dotted 1px #53B7CE;\r\n        background:transparent;\r\n    }\r\n    .lefttools {\r\n        text-align:left;\r\n    }\r\n\r\n    .editbox {\r\n        position:relative;\r\n        background-color: #ddd;\r\n        border:solid 1px #ccc;\r\n        padding:5px;\r\n    }\r\n\r\n    .closebtn {\r\n\r\n    }\r\n\r\n    .langname {\r\n        color:#333;\r\n    }\r\n\r\n    .tools > .savebtn {\r\n        background-color: green;\r\n    }\r\n\r\n    .tools > .closebtn {\r\n        background-color: #333;\r\n    }\r\n\r\n    .oldvalue {\r\n        border-bottom: dotted 1px #53B7CE;\r\n        padding: 2px 6px;\r\n        display: inline-block;\r\n    }\r\n\r\n    span.saving {\r\n\r\n    }\r\n</style>"],"sourceRoot":""}]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"login.vue","sourceRoot":""}]);
 
 // exports
 
@@ -11016,16 +11008,24 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"home-page.vue","sourceRoot":""}]);
+exports.push([module.i, "\ndiv.lefttools {\n    text-align:left;\n}\n.editbox {\n    position:relative;\n    background-color: #eee;\n    border:solid 1px #ccc;\n    padding:10px;\n}\n.closebtn {\n}\ntextarea {\n    width:300px;\n    border:solid 1px #ccc;\n}\n.langname {\n    color:#333;\n}\n.tools > .savebtn {\n    background-color: #27ae60;\n}\n.tools > .closebtn {\n    background-color: #333;\n}\n.oldvalue {\n    border-bottom: dotted 1px #53B7CE;\n    padding: 2px 6px;\n    display: inline-block;\n}\nspan.saving {\n}\n", "", {"version":3,"sources":["/Users/mats/Projects/TinyTranslation/src/TranslationWeb/ClientApp/components/transinput.vue?3f2242e9"],"names":[],"mappings":";AA4EA;IACA,gBAAA;CACA;AAEA;IACA,kBAAA;IACA,uBAAA;IACA,sBAAA;IACA,aAAA;CACA;AAEA;CAEA;AAEA;IACA,YAAA;IACA,sBAAA;CACA;AAEA;IACA,WAAA;CACA;AAEA;IACA,0BAAA;CACA;AAEA;IACA,uBAAA;CACA;AAEA;IACA,kCAAA;IACA,iBAAA;IACA,sBAAA;CACA;AAEA;CAEA","file":"transinput.vue","sourcesContent":["<template>\r\n    <div class=\"ff\">\r\n        <span class=\"langname\" v-if=\"!isNew\">{{langName}}</span>\r\n        <span class=\"oldvalue\" v-if=\"!editing\" v-on:click=\"editing=!editing\">{{oldValue}}</span>\r\n        <div v-if=\"editing\" class=\"editbox\">\r\n            <span v-if=\"saving\" class=\"saving\">Saving</span>\r\n            <div v-if=\"isNew\">\r\n                <label>Key</label>\r\n                <input v-model=\"key\" placeholder=\"New key\" />\r\n                <label>Default language translation</label>\r\n            </div>\r\n            <textarea v-if=\"!saving\" v-model=\"newValue\" @focus=\"getsugg\" /> <span v-if=\"oldValue!=newValue\">({{oldValue}})</span>\r\n            <div @click=\"getsugg\" v-if=\"hasTranslated\">{{suggest}}</div>\r\n            <div class=\"tools lefttools\">\r\n                <span @click=\"save\" class=\"savebtn\"><i class=\"fa fa-check\" /></span>\r\n                <span v-if=\"!isNew\" @click=\"getsugg\"><i class=\"fa fa-magic\" /></span>\r\n                <span v-on:click=\"editing=false\" class=\"closebtn\" v-if=\"!isNew\"><i class=\"fa fa-times\" /></span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n<script>\r\n\r\nexport default {\r\n    props: ['transkey','value','locale','isnew','isopen'],\r\n    data() {\r\n        return {\r\n            saving: false,\r\n            editing: !!this.isopen,\r\n            isNew: this.isnew,\r\n            lang: this.locale,\r\n            key: this.transkey,\r\n            hasTranslated: false,\r\n            suggest: 'Click for autotranslation...',\r\n            oldValue: this.value,\r\n            newValue: this.value\r\n        }\r\n    },\r\n\r\n    methods: {\r\n        getsugg:function() {\r\n            if (!this.hasTranslated) {\r\n                this.$http.get('/api/admin/'+this.key+'/'+this.lang).then(resp=> {\r\n                    this.suggest = resp.data;\r\n                    this.hasTranslated = true;\r\n                });\r\n            }\r\n            else {\r\n                this.newValue = this.suggest;\r\n            }\r\n        },\r\n        save:function() {\r\n            if (this.newValue != this.oldValue) {\r\n                this.saving = true;\r\n                this.$http.put('/api/translation/'+this.lang+'/'+this.key+'/'+this.newValue)\r\n                    .then(response => {\r\n                        this.saving = false;\r\n                        this.oldValue = this.newValue;\r\n                        this.editing = false;\r\n                    });\r\n            }\r\n        }\r\n    },\r\n    computed: {\r\n        langName: function() {\r\n\r\n            if (window.$languageNames[this.lang]) {\r\n                return window.$languageNames[this.lang]+':';\r\n            }\r\n            return this.lang;\r\n        }\r\n    }\r\n}\r\n</script>\r\n<style>\r\n\r\n    div.lefttools {\r\n        text-align:left;\r\n    }\r\n\r\n    .editbox {\r\n        position:relative;\r\n        background-color: #eee;\r\n        border:solid 1px #ccc;\r\n        padding:10px;\r\n    }\r\n\r\n    .closebtn {\r\n\r\n    }\r\n\r\n    textarea {\r\n        width:300px;\r\n        border:solid 1px #ccc;\r\n    }\r\n\r\n    .langname {\r\n        color:#333;\r\n    }\r\n\r\n    .tools > .savebtn {\r\n        background-color: #27ae60;\r\n    }\r\n\r\n    .tools > .closebtn {\r\n        background-color: #333;\r\n    }\r\n\r\n    .oldvalue {\r\n        border-bottom: dotted 1px #53B7CE;\r\n        padding: 2px 6px;\r\n        display: inline-block;\r\n    }\r\n\r\n    span.saving {\r\n\r\n    }\r\n</style>"],"sourceRoot":""}]);
 
 // exports
 
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = vendor_10dee78e3be1ee06b73e;
+exports = module.exports = __webpack_require__(2)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"home-page.vue","sourceRoot":""}]);
+
+// exports
+
 
 /***/ }),
 /* 10 */
@@ -11231,10 +11231,10 @@ module.exports = Html5Entities;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_router__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_router__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_home_page__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_home_page___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_home_page__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_translations__ = __webpack_require__(30);
@@ -12409,6 +12409,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12510,6 +12515,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -12519,7 +12526,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('transinput', __WEBPACK_IM
 /* harmony default export */ __webpack_exports__["default"] = ({
     data() {
         return {
-            translations: {}
+            translations: {},
+            loggedin: true
         };
     },
 
@@ -12557,6 +12565,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('transinput', __WEBPACK_IM
     async created() {
         try {
             console.log('http', this.$http);
+            this.loggedin = !this.signedIn;
             let response = await this.$http.get('/api/translation');
             console.log(response.data);
             this.translations = response.data;
@@ -13256,15 +13265,11 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("Translations")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('span', {
+  return _c('div', [(!_vm.loggedin) ? _c('div', [_vm._v("Login first")]) : _vm._e(), _vm._v(" "), (_vm.loggedin) ? _c('div', [_c('span', {
     staticClass: "right"
-  }, [_c('strong', [_vm._v(_vm._s(_vm.nokeys))]), _vm._v(" keys")]), _vm._v(" "), (!_vm.translations) ? _c('p', [_vm._m(1)]) : _vm._e(), _vm._v(" "), _c('ul', {
-    staticClass: "langs"
-  }, _vm._l((_vm.languages), function(l) {
-    return _c('li', [_vm._v("\n            " + _vm._s(l.name) + "\n        ")])
-  })), _vm._v(" "), _c('div', {
+  }, [_c('strong', [_vm._v(_vm._s(_vm.nokeys))]), _vm._v(" keys")]), _c('h2', [_vm._v("Translations")]), _vm._v(" "), _vm._m(0), _vm._v(" "), (!_vm.translations) ? _c('p', [_vm._m(1)]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "addnew"
-  }, [_c('span', [_vm._v("Add")]), _vm._v(" "), _c('transinput', {
+  }, [_c('span', [_vm._v("Add new")]), _vm._v(" "), _c('transinput', {
     attrs: {
       "isopen": "true",
       "locale": "default",
@@ -13300,7 +13305,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       })], 1)
     }))])
-  }))]) : _vm._e()])
+  }))]) : _vm._e()]) : _vm._e()])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_vm._v("Translate your all keys here and it will be stored directly."), _c('br'), _vm._v("If autotranslation is enabled you will get suggestions translated from main language")])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -13407,7 +13412,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "editbox"
   }, [(_vm.saving) ? _c('span', {
     staticClass: "saving"
-  }, [_vm._v("Saving")]) : _vm._e(), _vm._v(" "), (_vm.isNew) ? _c('input', {
+  }, [_vm._v("Saving")]) : _vm._e(), _vm._v(" "), (_vm.isNew) ? _c('div', [_c('label', [_vm._v("Key")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -13426,7 +13431,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.key = $event.target.value
       }
     }
-  }) : _vm._e(), _vm._v(" "), (!_vm.saving) ? _c('textarea', {
+  }), _vm._v(" "), _c('label', [_vm._v("Default language translation")])]) : _vm._e(), _vm._v(" "), (!_vm.saving) ? _c('textarea', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -13443,7 +13448,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.newValue = $event.target.value
       }
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.oldValue != _vm.newValue) ? _c('span', [_vm._v("(" + _vm._s(_vm.oldValue) + ")")]) : _vm._e(), _vm._v(" "), (!_vm.isNew) ? _c('div', {
+  }) : _vm._e(), _vm._v(" "), (_vm.oldValue != _vm.newValue) ? _c('span', [_vm._v("(" + _vm._s(_vm.oldValue) + ")")]) : _vm._e(), _vm._v(" "), (_vm.hasTranslated) ? _c('div', {
     on: {
       "click": _vm.getsugg
     }
@@ -13457,6 +13462,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-check"
   })]), _vm._v(" "), (!_vm.isNew) ? _c('span', {
+    on: {
+      "click": _vm.getsugg
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-magic"
+  })]) : _vm._e(), _vm._v(" "), (!_vm.isNew) ? _c('span', {
     staticClass: "closebtn",
     on: {
       "click": function($event) {
@@ -13503,37 +13514,11 @@ if (true) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(5);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("2b0fa14d", content, false);
-// Hot Module Replacement
-if(true) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept(5, function() {
-     var newContent = __webpack_require__(5);
-     if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
 var content = __webpack_require__(6);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("701c0c66", content, false);
+var update = __webpack_require__(4)("2b0fa14d", content, false);
 // Hot Module Replacement
 if(true) {
  // When the styles change, update the <style> tags
@@ -13549,7 +13534,7 @@ if(true) {
 }
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -13559,7 +13544,7 @@ var content = __webpack_require__(7);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("ef36157e", content, false);
+var update = __webpack_require__(4)("701c0c66", content, false);
 // Hot Module Replacement
 if(true) {
  // When the styles change, update the <style> tags
@@ -13575,7 +13560,7 @@ if(true) {
 }
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -13585,13 +13570,39 @@ var content = __webpack_require__(8);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("4d01be42", content, false);
+var update = __webpack_require__(4)("ef36157e", content, false);
 // Hot Module Replacement
 if(true) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
    module.hot.accept(8, function() {
      var newContent = __webpack_require__(8);
+     if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(9);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("4d01be42", content, false);
+// Hot Module Replacement
+if(true) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept(9, function() {
+     var newContent = __webpack_require__(9);
      if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
      update(newContent);
    });
@@ -13888,36 +13899,34 @@ module.exports = function(module) {
 /* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(9))(29);
+module.exports = (__webpack_require__(5))(10);
 
 /***/ }),
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(9))(7);
+module.exports = (__webpack_require__(5))(29);
 
 /***/ }),
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(9))(8);
+module.exports = (__webpack_require__(5))(7);
 
 /***/ }),
 /* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(5))(8);
+
+/***/ }),
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
 __webpack_require__(13);
 module.exports = __webpack_require__(11);
 
-
-/***/ }),
-/* 47 */,
-/* 48 */,
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(9))(10);
 
 /***/ })
 /******/ ]);

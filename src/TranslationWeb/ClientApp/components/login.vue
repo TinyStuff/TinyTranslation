@@ -58,51 +58,5 @@ export default {
 }
 </script>
 <style>
-    .valuetd {
-        background-color:#fcfcfc;
-        border-bottom: 1px #aaa;
-    }
-    .right {
-        float:right;
-        font-size:20px;
-    }
-    .langs {
-        list-style:none;
-        margin:0;
-        padding:0;
-    }
-
-    .keyvalue {
-        text-align:right;
-    }
-    .tools {
-        text-align:right;
-    }
-    .tools > span {
-        margin-left: 10px;
-        text-align: center;
-        height:20px;
-        width:20px;
-        display:inline-block;
-        line-height:20px;
-        font-size: 12px;
-        color: #fff;
-        border-radius: 20px;
-        background-color: red;
-    }
-
-    .langs li {
-        display:inline-block;
-        margin-right: 10px;
-        padding: 2px 8px;
-        text-transform: uppercase;
-        color: #fff;
-        border-radius: 20px;
-        background-color: #53B7CE;
-    }
-
-    .value input {
-        width: 190px;
-        display:inline-block;
-    }
+    
 </style>
