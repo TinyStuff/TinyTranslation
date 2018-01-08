@@ -118,8 +118,7 @@ namespace TinyTranslation.Forms
         {
             if (string.IsNullOrEmpty(locale))
                 locale = DeviceSpecificLanguage;
-            Task.Run(async () => await ChangeCultureAsync(locale));
-
+            ChangeCultureAsync(locale).GetAwaiter().GetResult();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
