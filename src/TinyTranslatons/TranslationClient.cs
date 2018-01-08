@@ -32,7 +32,7 @@ namespace TinyTranslation
                     _client = new HttpClient(MessageHandler);
                 }
                 if (!string.IsNullOrEmpty(token))
-                    _client.DefaultRequestHeaders.Add("Authorization", "Bearer "+token);
+                    _client.DefaultRequestHeaders.Add("apikey", token);
             }
             return _client;
         }
