@@ -22,6 +22,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
 using TranslationWeb.Services;
+using System.Linq;
+using System.Security.Principal;
+using System.Net;
 
 namespace TranslationWeb
 {
@@ -59,12 +62,56 @@ namespace TranslationWeb
 
         }
 
+        private static void ApiKeyMiddlewear(IApplicationBuilder app, IConfiguration config)
+        {
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path.StartsWithSegments(new PathString("/api")))
+                {
+                    // Let's check if this is an API Call
+                    if (context.Request.Headers["apikey"].Any())
+                    {
+                        // validate the supplied API key
+                        // Validate it
+                        var headerKey = context.Request.Headers["apikey"].FirstOrDefault();
+
+                        var keys = config["ApiKey"];
+                        var valid = keys.Equals(headerKey);
+
+                        if (!valid)
+                        {
+                            
+                            context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                            await context.Response.WriteAsync("Invalid API Key");
+                            return;
+                        }
+                        else
+                        {
+                            var identity = new GenericIdentity("API");
+                            identity.AddClaim(new System.Security.Claims.Claim("Origin", "Api"));
+                            var principal = new GenericPrincipal(identity, new[] { "Admin", "ApiUser" });
+                            context.User = principal;
+                            await next();
+                        }
+                    }
+                    else
+                    {
+                        await next();
+                    }
+                }
+                else
+                {
+                    await next();
+                }
+            });
+        }
+
         private void ConfigureAuthentication(IServiceCollection services)
         {
             services.AddSingleton<TokenService>();
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("IdentityDB")));
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityDB")));
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             services.AddAuthentication(options =>
@@ -96,13 +143,14 @@ namespace TranslationWeb
         {
             // Use database storage instead
             services.AddDbContext<TranslationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("TranslationDB"), (b) =>
+
+                options.UseSqlServer(Configuration.GetConnectionString("TranslationDB"), (b) =>
                 {
                     b.MigrationsAssembly("TranslationWeb");
                 }));
-            //services.AddSingleton<ITranslationStorage, TinyTranslation.EFStore.DbStorage>();
+            services.AddSingleton<ITranslationStorage, TinyTranslation.EFStore.DbStorage>();
 
-            services.AddSingleton<ITranslationStorage, FileStorage>();
+            //services.AddSingleton<ITranslationStorage, FileStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -126,7 +174,7 @@ namespace TranslationWeb
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-
+            ApiKeyMiddlewear(app, Configuration);
             app.UseAuthentication();
 
             app.UseMvc(routes =>

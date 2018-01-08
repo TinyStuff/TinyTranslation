@@ -4,20 +4,22 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 using TinyTranslation.EFStore.Data;
 
-namespace TranslationWeb.Migrations
+namespace TranslationWeb.Migrations.TranslationDb
 {
     [DbContext(typeof(TranslationDbContext))]
-    [Migration("20180104192849_initian")]
-    partial class initian
+    [Migration("20180108111635_starttrans")]
+    partial class starttrans
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("TinyTranslation.EFStore.Data.Models.Locale", b =>
                 {

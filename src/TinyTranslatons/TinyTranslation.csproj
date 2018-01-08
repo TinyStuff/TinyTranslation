@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
+    <Description />
+    <PackageLicenseUrl>https://github.com/TinyStuff/TinyTranslation/LICENSE</PackageLicenseUrl>
+    <RepositoryType>Git</RepositoryType>
+    <RepositoryUrl>https://github.com/TinyStuff/TinyTranslation</RepositoryUrl>
+    <Company />
+    <Product>TinyTranslations</Product>
+    <Authors>Mats Törnberg</Authors>
+    <Version>1.0.0</Version>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Copyright>Copyright 2018</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

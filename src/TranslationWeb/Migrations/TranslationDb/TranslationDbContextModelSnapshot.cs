@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 using TinyTranslation.EFStore.Data;
 
-namespace TranslationWeb.Migrations
+namespace TranslationWeb.Migrations.TranslationDb
 {
     [DbContext(typeof(TranslationDbContext))]
     partial class TranslationDbContextModelSnapshot : ModelSnapshot
@@ -16,7 +17,8 @@ namespace TranslationWeb.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("TinyTranslation.EFStore.Data.Models.Locale", b =>
                 {

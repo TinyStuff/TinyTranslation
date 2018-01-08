@@ -23,7 +23,7 @@ namespace TranslationWeb.Controllers
             this.userManager = userManager;
             this.service = service;
         }
-
+#if DEBUG
         [HttpGet("adduser/{user}")]
         public async Task<IdentityResult> AddUser(string user, [FromQuery]string password)
         {
@@ -33,7 +33,7 @@ namespace TranslationWeb.Controllers
             }, password);
             return r;
         }
-
+#endif
         [HttpGet("login/{user}")]
         public async Task<string> Login(string user, [FromQuery]string password)
         {
