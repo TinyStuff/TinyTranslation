@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using TinyTranslation;
 using Xamarin.Forms;
 
-namespace TinyTranslatio.Forms
+namespace TinyTranslation.Forms
 {
     public class TranslationHelper : INotifyPropertyChanged
     {
