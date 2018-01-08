@@ -1,5 +1,5 @@
 ﻿using System;
-using TinyTranslatio.Forms;
+using TinyTranslation.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
