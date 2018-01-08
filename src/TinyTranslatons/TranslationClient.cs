@@ -9,7 +9,7 @@ namespace TinyTranslation
     {
         readonly string token;
 
-        public TranslationClient(Uri baseUrl, string token)
+        public TranslationClient(Uri baseUrl, string token = null)
         {
             this.token = token;
             baseUri = baseUrl;
@@ -31,7 +31,8 @@ namespace TinyTranslation
                 else {
                     _client = new HttpClient(MessageHandler);
                 }
-                _client.DefaultRequestHeaders.Add("Authorization", "Bearer "+token);
+                if (!string.IsNullOrEmpty(token))
+                    _client.DefaultRequestHeaders.Add("Authorization", "Bearer "+token);
             }
             return _client;
         }
