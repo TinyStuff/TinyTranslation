@@ -39,6 +39,8 @@ export default {
 
     methods: {
         getsugg:function() {
+            if (this.isNew)
+                return; 
             if (!this.hasTranslated) {
                 this.$http.get('/api/admin/'+this.key+'/'+this.lang).then(resp=> {
                     this.suggest = resp.data;
@@ -57,6 +59,8 @@ export default {
                         this.saving = false;
                         this.oldValue = this.newValue;
                         this.editing = false;
+                        if (this.isNew)
+                            window.location.reload(true);
                     });
             }
         }

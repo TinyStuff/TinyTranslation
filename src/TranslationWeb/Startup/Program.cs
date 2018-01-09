@@ -19,7 +19,7 @@ namespace TranslationWeb
         public static void Main(string[] args)
         {
             BuildWebHost(args)
-                //.PopulateTranslationDb() Needed to 
+                .PopulateTranslationDb()
                 .Run();
         }
 

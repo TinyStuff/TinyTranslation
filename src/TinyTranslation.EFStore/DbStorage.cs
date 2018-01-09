@@ -216,7 +216,8 @@ namespace TinyTranslation.EFStore
             LangId = langId;
             foreach (var trans in translations)
             {
-                Translations.Add(trans.Key, trans);
+                if (!Translations.ContainsKey(trans.Key))
+                    Translations.Add(trans.Key, trans);
             }
         }
     }

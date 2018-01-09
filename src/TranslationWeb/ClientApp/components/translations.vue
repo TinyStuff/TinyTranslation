@@ -119,8 +119,8 @@ export default {
     .addnew .editbox {
         border:0;
         padding:13px 15px;
-        color:#fff;
-        background-color:#1abc9c;
+        color:#333;
+        background-color:#eee;
     }
     .addnew .editbox input {
         margin-bottom:10px;
