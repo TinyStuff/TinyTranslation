@@ -101,9 +101,16 @@ namespace TinyTranslation.Forms
         {
             currentLocale = locale;
             var newdict = await FetchLanguageMethod(locale);
+            try 
+            {
+                if (_translations != null)
+                    _translations.OnAdd -= TranslationAdded;
+            }
+            catch(Exception ex) 
+            {
+                
+            }
             newdict.OnAdd += TranslationAdded;
-            if (_translations != null)
-                _translations.OnAdd -= TranslationAdded;
             _translations = newdict;
             propertyChanged(nameof(Translations));
         }

@@ -29,6 +29,7 @@ namespace TinyTranslation.EFStore
                 {
                     old.LocalID = locale.LocalID;
                     monitors[locale.Key].Populate(ctx.Translations.Where(d => d.LocalID == locale.LocalID), locale.LocalID);
+                    ctx.SaveChanges();
                 }
                 else
                 {

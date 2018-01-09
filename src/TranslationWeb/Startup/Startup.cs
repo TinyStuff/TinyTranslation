@@ -143,7 +143,6 @@ namespace TranslationWeb
         {
             // Use database storage instead
             services.AddDbContext<TranslationDbContext>(options =>
-
                 options.UseSqlServer(Configuration.GetConnectionString("TranslationDB"), (b) =>
                 {
                     b.MigrationsAssembly("TranslationWeb");

@@ -54,8 +54,10 @@ namespace TinyTranslation
         public async Task<string> AddTranslationAsync(KeyValuePair<string, string> e)
         {
             var baseUrl = baseUri.AbsoluteUri + "api/translation/default/" + GetUrl(e.Key);
-            if (e.Key.Equals(e.Value))
+            if (e.Key.Equals(e.Value)) 
+            {
                 return await GetHttpClient().GetStringAsync(baseUrl);
+            }
             else
             {
                 var ret = await GetHttpClient().PutAsync(baseUrl + "/" + GetUrl(e.Value), null);
